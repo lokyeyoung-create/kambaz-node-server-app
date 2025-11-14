@@ -21,9 +21,16 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin: "http://localhost:3000",
+    origin:
+      process.env.NODE_ENV === "production"
+        ? [
+            "https://kambaz-styled-js.vercel.app",
+            "https://kambaz-styled-9msk8thet-lok-ye-s-projects.vercel.app/",
+            // Add any other Vercel URLs here
+          ]
+        : "http://localhost:3000",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
   })
 );
 
@@ -32,21 +39,16 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,
+    secure: process.env.NODE_ENV === "production",
     httpOnly: true,
-    sameSite: "lax",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     maxAge: 24 * 60 * 60 * 1000,
   },
 };
 
-// if (process.env.SERVER_ENV !== "development") {
-//   sessionOptions.proxy = true;
-//   sessionOptions.cookie = {
-//     sameSite: "none",
-//     secure: true,
-//     domain: process.env.SERVER_URL,
-//   };
-// }
+if (process.env.NODE_ENV === "production") {
+  sessionOptions.proxy = true;
+}
 
 app.use(session(sessionOptions));
 app.use(express.json());
