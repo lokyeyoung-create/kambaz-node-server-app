@@ -1,0 +1,100 @@
+export default [
+  {
+    _id: "A101",
+    title: "Propulsion Assignment",
+    course: "RS101",
+    description:
+      "Design and analyze a rocket propulsion system including thrust calculations and fuel efficiency analysis.",
+    points: 100,
+    dueDate: "2024-05-13",
+    availableDate: "2024-05-06",
+    availableUntil: "2024-05-20",
+  },
+  {
+    _id: "A102",
+    title: "Combustion Analysis",
+    course: "RS101",
+    description:
+      "Analyze combustion processes in rocket engines, including temperature and pressure calculations.",
+    points: 100,
+    dueDate: "2024-05-20",
+    availableDate: "2024-05-13",
+    availableUntil: "2024-05-27",
+  },
+  {
+    _id: "A103",
+    title: "Nozzle Design Project",
+    course: "RS101",
+    description:
+      "Design an optimal rocket nozzle using computational fluid dynamics principles.",
+    points: 150,
+    dueDate: "2024-05-27",
+    availableDate: "2024-05-20",
+    availableUntil: "2024-06-03",
+  },
+  {
+    _id: "A201",
+    title: "Aerodynamics Quiz",
+    course: "RS102",
+    description:
+      "Quiz covering fundamental aerodynamics concepts including lift, drag, and flow patterns.",
+    points: 50,
+    dueDate: "2024-05-15",
+    availableDate: "2024-05-08",
+    availableUntil: "2024-05-22",
+  },
+  {
+    _id: "A202",
+    title: "Flow Analysis",
+    course: "RS102",
+    description:
+      "Analyze subsonic and supersonic flow patterns around various aerospace vehicles.",
+    points: 100,
+    dueDate: "2024-05-22",
+    availableDate: "2024-05-15",
+    availableUntil: "2024-05-29",
+  },
+  {
+    _id: "A203",
+    title: "Heating Analysis",
+    course: "RS102",
+    description: "Thermal analysis of spacecraft during atmospheric re-entry.",
+    points: 100,
+    dueDate: "2024-05-29",
+    availableDate: "2024-05-22",
+    availableUntil: "2024-06-05",
+  },
+  {
+    _id: "A301",
+    title: "Structural Design Task",
+    course: "RS103",
+    description:
+      "Design a lightweight spacecraft structure capable of withstanding launch loads.",
+    points: 120,
+    dueDate: "2024-05-18",
+    availableDate: "2024-05-11",
+    availableUntil: "2024-05-25",
+  },
+  {
+    _id: "A302",
+    title: "Orbital Calculations",
+    course: "RS103",
+    description:
+      "Calculate orbital parameters for various mission profiles including transfer orbits.",
+    points: 80,
+    dueDate: "2024-05-25",
+    availableDate: "2024-05-18",
+    availableUntil: "2024-06-01",
+  },
+  {
+    _id: "A303",
+    title: "Systems Engineering Exam",
+    course: "RS103",
+    description:
+      "Comprehensive exam on spacecraft systems engineering and integration.",
+    points: 200,
+    dueDate: "2024-06-01",
+    availableDate: "2024-05-25",
+    availableUntil: "2024-06-08",
+  },
+];
