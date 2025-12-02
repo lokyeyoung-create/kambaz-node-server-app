@@ -32,6 +32,7 @@ app.use(
         ? [
             "https://kambaz-styled-js.vercel.app",
             "https://kambaz-styled-9msk8thet-lok-ye-s-projects.vercel.app/",
+            "https://kambaz-react-web-app-1usn-70u1qfk9p-lok-ye-s-projects.vercel.app/",
             // Add any other Vercel URLs here
           ]
         : "http://localhost:3000",
