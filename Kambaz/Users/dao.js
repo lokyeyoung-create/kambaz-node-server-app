@@ -1,33 +1,35 @@
 import { v4 as uuidv4 } from "uuid";
-export default function UsersDao(db) {
-  let { users } = db;
+import model from "./model.js";
+
+export default function UsersDao() {
   const createUser = (user) => {
     const newUser = { ...user, _id: uuidv4() };
-    users = [...users, newUser];
-    return newUser;
+    return model.create(newUser);
   };
-  const findAllUsers = () => users;
-  const findUserById = (userId) => users.find((user) => user._id === userId);
+  const findAllUsers = () => model.find();
+  const findUserById = (userId) => model.findById(userId);
+
   const findUserByUsername = (username) =>
-    users.find((user) => user.username === username);
-
-  // Kambaz/Users/dao.js
-  const findUserByCredentials = (username, password) => {
-    console.log("=== DAO DEBUG ===");
-    console.log("Total users in database:", users.length);
-    console.log("First user in DB:", users[0] ? users[0].username : "No users");
-
-    const user = users.find(
-      (user) => user.username === username && user.password === password
-    );
-
-    console.log("Match found:", user ? "Yes" : "No");
+    model.findOne({ username: username });
+  const findUserByCredentials = async (username, password) => {
+    console.log("DAO: Looking for user:", { username, password }); // ADD THIS
+    const user = await model.findOne({ username, password });
+    console.log("DAO: Found user:", user); // ADD THISn
     return user;
   };
   const updateUser = (userId, user) =>
-    (users = users.map((u) => (u._id === userId ? user : u)));
-  const deleteUser = (userId) =>
-    (users = users.filter((u) => u._id !== userId));
+    model.updateOne({ _id: userId }, { $set: user });
+
+  const deleteUser = (userId) => model.findByIdAndDelete(userId);
+
+  const findUsersByRole = (role) => model.find({ role: role });
+  const findUsersByPartialName = (partialName) => {
+    const regex = new RegExp(partialName, "i"); // 'i' makes it case-insensitive
+    return model.find({
+      $or: [{ firstName: { $regex: regex } }, { lastName: { $regex: regex } }],
+    });
+  };
+
   return {
     createUser,
     findAllUsers,
@@ -36,5 +38,7 @@ export default function UsersDao(db) {
     findUserByCredentials,
     updateUser,
     deleteUser,
+    findUsersByRole,
+    findUsersByPartialName,
   };
 }

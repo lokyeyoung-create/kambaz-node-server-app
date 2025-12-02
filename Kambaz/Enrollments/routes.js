@@ -20,10 +20,10 @@ export default function EnrollmentsRoutes(app, db) {
   app.delete("/api/enrollments/:userId/:courseId", unenrollFromCourse);
 
   // GET enrollments for a specific user - THIS WAS MISSING!
-  const getEnrollmentsForUser = (req, res) => {
+  const getEnrollmentsForUser = async (req, res) => {
     const { userId } = req.params;
     console.log("Getting enrollments for user:", userId);
-    const enrollments = dao.findEnrollmentsForUser(userId);
+    const enrollments = await dao.findEnrollmentsForUser(userId);
     console.log("Found enrollments:", enrollments);
     res.json(enrollments);
   };
