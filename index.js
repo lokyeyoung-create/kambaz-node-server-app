@@ -27,15 +27,23 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin:
-      process.env.NODE_ENV === "production"
-        ? [
-            "https://kambaz-styled-js.vercel.app",
-            "https://kambaz-styled-9msk8thet-lok-ye-s-projects.vercel.app/",
-            "https://kambaz-react-web-app-1usn-70u1qfk9p-lok-ye-s-projects.vercel.app/",
-            // Add any other Vercel URLs here
-          ]
-        : "http://localhost:3000",
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, Postman)
+      if (!origin) return callback(null, true);
+
+      // Allow localhost for development
+      if (origin === "http://localhost:3000") {
+        return callback(null, true);
+      }
+
+      // Allow ANY Vercel deployment (production or preview)
+      if (origin.includes(".vercel.app")) {
+        return callback(null, true);
+      }
+
+      // If none match, block it
+      callback(new Error("Not allowed by CORS"));
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
   })
