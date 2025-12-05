@@ -69,16 +69,9 @@ EnrollmentsRoutes(app);
 console.log("Setting up Hello route...");
 Hello(app);
 QuizzesRoutes(app);
+PiazzaRoutes(app);
 QuizAttemptsRoutes(app);
 app.listen(4000, () => {
   console.log("Server is running on port 4000");
   console.log("Test the server at: http://localhost:4000/api/test");
 });
-UserRoutes(app);
-CourseRoutes(app);
-AssignmentsRoutes(app);
-ModulesRoutes(app);
-EnrollmentsRoutes(app);
-PiazzaRoutes(app);
-Lab5(app);
-Hello(app);
